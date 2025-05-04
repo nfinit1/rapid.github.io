@@ -22,16 +22,16 @@ async def _():
         utils = types.ModuleType("utils")
         exec(code, utils.__dict__)
         sys.modules["utils"] = utils
+        from utils import multiply
     except ImportError:
-        import utils
-    return
+        from utils import multiply
+    return (multiply,)
 
 
 @app.cell
 def _():
     import pandas as pd
-    from utils import multiply
-    return multiply, pd
+    return (pd,)
 
 
 @app.cell
@@ -47,10 +47,11 @@ def _(multiply, ui_slide):
 
 
 @app.cell
-def _(pd):
+def _(multiply, pd):
     df = pd.DataFrame({"name": ["Rick", "Sarah", "Scarlett", "Aubrey"],
                        "age":  ["40", "38", "8", "6"],
                        "birthday": ["January 20, 1985", "February 5, 1987", "May 21 2018", "June 30 2016"]})
+    df.age = df.age.apply(multiply)
     return (df,)
 
 
