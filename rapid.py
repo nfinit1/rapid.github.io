@@ -11,6 +11,12 @@ def _():
 
 
 @app.cell
+def _():
+    import pandas as pd
+    return (pd,)
+
+
+@app.cell
 def _(mo):
     ui_slide = mo.ui.slider(1, 10); ui_slide
     return (ui_slide,)
@@ -19,6 +25,26 @@ def _(mo):
 @app.cell
 def _(ui_slide):
     ui_slide.value
+    return
+
+
+@app.cell
+def _(pd):
+    df = pd.DataFrame({"name": ["Rick", "Sarah", "Scarlett", "Aubrey"],
+                       "age":  ["40", "38", "8", "6"],
+                       "birthday": ["January 20, 1985", "February 5, 1987", "May 21 2018", "June 30 2016"]})
+    return (df,)
+
+
+@app.cell
+def _(df, mo):
+    ui_table = mo.ui.table(df); ui_table
+    return (ui_table,)
+
+
+@app.cell
+def _(ui_table):
+    ui_table.value
     return
 
 
