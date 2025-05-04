@@ -11,9 +11,26 @@ def _():
 
 
 @app.cell
+async def _():
+    try:
+        import types
+        import sys
+        from pyodide.http import pyfetch
+
+        resp = await pyfetch("public/utils.py")
+        code = await resp.string()
+        utils = types.ModuleType("utils")
+        exec(code, utils.__dict__)
+        sys.modules["utils"] = utils
+    except ImportError:
+        import utils
+    return
+
+
+@app.cell
 def _():
     import pandas as pd
-    from public.utils import multiply
+    from utils import multiply
     return multiply, pd
 
 
