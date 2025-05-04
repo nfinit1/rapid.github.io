@@ -13,7 +13,8 @@ def _():
 @app.cell
 def _():
     import pandas as pd
-    return (pd,)
+    from utils import multiply
+    return multiply, pd
 
 
 @app.cell
@@ -23,8 +24,8 @@ def _(mo):
 
 
 @app.cell
-def _(ui_slide):
-    ui_slide.value
+def _(multiply, ui_slide):
+    multiply(ui_slide.value)
     return
 
 
@@ -45,11 +46,6 @@ def _(df, mo):
 @app.cell
 def _(ui_table):
     ui_table.value
-    return
-
-
-@app.cell
-def _():
     return
 
 
