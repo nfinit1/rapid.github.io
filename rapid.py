@@ -13,7 +13,7 @@ def _():
 @app.cell
 def _():
     import pandas as pd
-    from utils import multiply
+    from public.utils import multiply
     return multiply, pd
 
 
