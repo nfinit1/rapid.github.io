@@ -125,10 +125,10 @@ def _(
     styled_time_picker_end,
     styled_time_picker_start,
 ):
-    mo.hstack([
+    datetime_objects = mo.hstack([
         mo.vstack([styled_date_picker_start, styled_time_picker_start]),
         mo.vstack([styled_date_picker_end, styled_time_picker_end])
-    ])
+    ]); datetime_objects
     return
 
 
