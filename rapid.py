@@ -12,7 +12,6 @@ def _():
 
 @app.cell
 async def _():
-    from datetime import time, datetime
     try:    
         import types
         import sys
@@ -31,6 +30,7 @@ async def _():
 
 @app.cell
 def _():
+    from datetime import datetime, time, date
     import pandas as pd
     return (pd,)
 
