@@ -12,7 +12,8 @@ def _():
 
 @app.cell
 async def _():
-    try:
+    from datetime import time, datetime
+    try:    
         import types
         import sys
         from pyodide.http import pyfetch
@@ -64,6 +65,75 @@ def _(df, mo):
 @app.cell
 def _(ui_table):
     ui_table.value
+    return
+
+
+@app.cell
+def _():
+    style = {
+        "color": "blue"
+    }
+    return (style,)
+
+
+@app.cell
+def _(mo, style):
+    date_picker_start = mo.ui.date(
+        label="Choose Start Date"
+    )
+    styled_date_picker_start = date_picker_start.style(style)
+    date_picker_end = mo.ui.date(
+        label="Choose End Date"
+    )
+    styled_date_picker_end = date_picker_end.style(style)
+
+    time_picker_start = mo.ui.dropdown(
+        label="Choose Start Time",
+        options = [
+            "0001Z", "0201Z", "0301Z", "0401Z", "0501Z", "0601Z", 
+            "0701Z", "0801Z", "0901Z", "1001Z", "1101Z", "1201Z", 
+            "1301Z", "1401Z", "1501Z", "1601Z", "1701Z", "1801Z", 
+            "1901Z", "2001Z", "2101Z", "2201Z", "2301Z", "2401Z"
+        ], 
+        value="1601Z",
+    )
+    styled_time_picker_start = time_picker_start.style(style)
+    time_picker_end = mo.ui.dropdown(
+        label="Choose End Time", 
+        options = [
+            "0000Z", "0200Z", "0300Z", "0400Z", "0500Z", "0600Z", 
+            "0700Z", "0800Z", "0900Z", "1000Z", "1100Z", "1200Z", 
+            "1300Z", "1400Z", "1500Z", "1600Z", "1700Z", "1800Z", 
+            "1900Z", "2000Z", "2100Z", "2200Z", "2300Z", "2400Z"
+        ], 
+        value="1600Z"
+    )
+    styled_time_picker_end = time_picker_end.style(style)
+    return (
+        styled_date_picker_end,
+        styled_date_picker_start,
+        styled_time_picker_end,
+        styled_time_picker_start,
+    )
+
+
+@app.cell
+def _(
+    mo,
+    styled_date_picker_end,
+    styled_date_picker_start,
+    styled_time_picker_end,
+    styled_time_picker_start,
+):
+    mo.hstack([
+        mo.vstack([styled_date_picker_start, styled_time_picker_start]),
+        mo.vstack([styled_date_picker_end, styled_time_picker_end])
+    ])
+    return
+
+
+@app.cell
+def _():
     return
 
 
