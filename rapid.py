@@ -49,7 +49,7 @@ def _(multiply, ui_slide):
 
 @app.cell
 def _(multiply, pd):
-    df = pd.DataFrame({"name": ["Rick", "Sarah", "Scarlett", "Aubrey"],
+    df = pd.DataFrame({"name": ["Me", "Sarah", "Scarlett", "Aubrey"],
                        "age":  ["40", "38", "8", "6"],
                        "birthday": ["January 20, 1985", "February 5, 1987", "May 21 2018", "June 30 2016"]})
     df.age = df.age.apply(multiply)
